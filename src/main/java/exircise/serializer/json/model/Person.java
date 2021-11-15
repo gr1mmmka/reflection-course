@@ -4,7 +4,8 @@ public record Person(
         String name,
         String surname,
         int age,
-        Address address,
+        String[] children,
+        Address[] address,
         Company company
 ) {
 }
