@@ -2,6 +2,7 @@ package exircise.serializer.json;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -20,10 +21,12 @@ public class JsonWriter {
         for (int i = 0; i < fields.length; i++) {
             Field field = fields[i];
             field.setAccessible(true);
-
-            if (field.isSynthetic()) {
+            if (field.isSynthetic())
                 continue;
-            }
+
+            int modifiers = field.getModifiers();
+            if (Modifier.isStatic(modifiers) || Modifier.isTransient(modifiers))
+                continue;
 
             builder.append(indent(indentSize + 1));
             builder.append(formatStringValue(field.getName()));
