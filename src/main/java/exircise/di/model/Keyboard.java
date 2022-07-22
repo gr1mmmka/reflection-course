@@ -1,7 +1,8 @@
 package exircise.di.model;
 
 public class Keyboard {
-    public void connect() {
-        System.out.println("Keyboard connected");
-    }
+
+  public void connect() {
+    System.out.println("Keyboard connected");
+  }
 }
